@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>[译]css编码技巧 css coding techniques | 拾指相扣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文根据《CSS coding techniques》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：https://hacks.mozilla.org/2016/05/css-coding-techniques/
+
+最近，我们看到很多苦恼于CSS的人，从初学者到有经验的开发者。有些人不喜欢它工作的方式，并想知道如果用不同的语言来代替CSS是否会更好——CSS处理器从">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[译]css编码技巧 css coding techniques">
+<meta property="og:url" content="http://wangmx.github.io/2016/05/29/css-coding-techniques/index.html">
+<meta property="og:site_name" content="拾指相扣">
+<meta property="og:description" content="本文根据《CSS coding techniques》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：https://hacks.mozilla.org/2016/05/css-coding-techniques/
+
+最近，我们看到很多苦恼于CSS的人，从初学者到有经验的开发者。有些人不喜欢它工作的方式，并想知道如果用不同的语言来代替CSS是否会更好——CSS处理器从">
+<meta property="og:image" content="http://wangmx.github.io/img/image00.png">
+<meta property="og:image" content="http://wangmx.github.io/img/image01.png">
+<meta property="og:updated_time" content="2016-05-29T11:19:38.842Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[译]css编码技巧 css coding techniques">
+<meta name="twitter:description" content="本文根据《CSS coding techniques》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：https://hacks.mozilla.org/2016/05/css-coding-techniques/
+
+最近，我们看到很多苦恼于CSS的人，从初学者到有经验的开发者。有些人不喜欢它工作的方式，并想知道如果用不同的语言来代替CSS是否会更好——CSS处理器从">
+<meta name="twitter:image" content="http://wangmx.github.io/img/image00.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/github.min.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wangmx</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/wangmx" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/wangmingxuan1" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/wangmx" title="zhihu">zhihu</a>
+					        
+								<a class="segmentfault" target="_blank" href="https://segmentfault.com/u/wangmx" title="segmentfault">segmentfault</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/arrow-function/" style="font-size: 10px;">arrow function</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello_world</a> <a href="/tags/techniques/" style="font-size: 10px;">techniques</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/箭头函数/" style="font-size: 10px;">箭头函数</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">人生若只如初见，何事秋风悲画扇。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wangmx</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wangmx</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/wangmx" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/wangmingxuan1" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/wangmx" title="zhihu">zhihu</a>
+			        
+						<a class="segmentfault" target="_blank" href="https://segmentfault.com/u/wangmx" title="segmentfault">segmentfault</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-css-coding-techniques" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/29/css-coding-techniques/" class="article-date">
+  	<time datetime="2016-05-29T10:46:35.000Z" itemprop="datePublished">2016-05-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [译]css编码技巧 css coding techniques
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/techniques/">techniques</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/翻译/">翻译</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文根据《<a href="https://hacks.mozilla.org/2016/05/css-coding-techniques/" target="_blank" rel="external">CSS coding techniques</a>》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：<a href="https://hacks.mozilla.org/2016/05/css-coding-techniques/" target="_blank" rel="external">https://hacks.mozilla.org/2016/05/css-coding-techniques/</a></p>
+</blockquote>
+<p>最近，我们看到很多苦恼于CSS的人，从初学者到有经验的开发者。有些人不喜欢它工作的方式，并想知道如果用不同的语言来代替CSS是否会更好——CSS处理器从这个思维中涌现。一些期望他们将必定写更少的代码使用CSS框架（我们已经看到<a href="https://hacks.mozilla.org/2016/04/you-might-not-need-a-css-framework/" target="_blank" rel="external">在先前一篇文章</a>，为什么通常不是这样的情况）。一些人开始完全地抛弃CSS并使用JavaScript应用样式。<br>但你并不总是需要引入CSS处理器在你的工作流中。你不需要将一个臃肿的框架作为任何项目的默认起点。使用JavaScript去做CSS的事情意味着这只是一个可怕的想法。<br>在这篇文章中我们将看到写出更好的，<strong>更容易维护的CSS</strong>代码的一些提示和建议，因此你的样式表更短，有更少的规则。CSS可以感觉像是一个得心应手的工具而不是一个负担。<br><a id="more"></a></p>
+<h2 id="“最小可行选择器”"><a href="#“最小可行选择器”" class="headerlink" title="“最小可行选择器”"></a>“最小可行选择器”</h2><p>CSS是一门你指定将DOM中的元素样式化的规则的陈述性语言。在这种语言中，按照被应用的顺序<strong>一些规则优先</strong>于其他的，像内联样式重写了一些以前的规则。<br>例如，如果我们有这样的HTML和CSS代码：</p>
+<pre><code class="html">&lt;button class=&quot;button-warning&quot;&gt;
+</code></pre>
+<pre><code class="css">.button-warning {
+  background: red;
+}
+
+button, input[type=submit] {
+  background: gray;
+}
+</code></pre>
+<p>尽管<code>.button-warning</code>在<code>button, input[type=submit]</code>规则之前被定义，它将覆盖后面的<code>background</code>属性。为什么？决定哪一个规则将覆盖另一个规则的样式的标准是什么？<br><strong>特异性（优先级）</strong><br>一些选择器被认为比其他的更具体：例如一个<code>#ID</code>选择器将覆盖<code>.calss</code>选择器。<br>如果我们使用了一个比它实际需要更具体的选择器，会发生什么？如果我们稍后要覆盖这些样式，我们需要一个更具体的选择器。如果我们稍后需要覆盖这个更具体的选择器，我们将需要…是的，它就像一个雪球越滚越大，最终将变得非常难以维护。<br>所以，无论什么时候你写下你的选择器，问自己：这是能够生效的最不具体的选择器？<br>所有的优先级规则都正式地<a href="https://www.w3.org/TR/selectors/#specificity" target="_blank" rel="external">定义在W3C的CSS选择器规范</a>中，这是了解CSS选择器的每一个细节的方式。对于一些更容易理解，阅读<a href="https://www.smashingmagazine.com/2007/07/css-specificity-things-you-should-know/" target="_blank" rel="external">这篇关于CSS的特异性（优先级）</a>。</p>
+<h2 id="不要在错误上扔新规则"><a href="#不要在错误上扔新规则" class="headerlink" title="不要在错误上扔新规则"></a>不要在错误上扔新规则</h2><p>让我们想象一下这种典型的情况：你的CSS有一个bug并且你找到有错误样式的DOM元素。你会意识到它是在某种程度上继承了一个不该有的属性。<br><em>不要只是把更多的CSS写在这。</em>如果你这样做，你的代码库将增长的非常庞大，并且定位未来的错误将更困难。<br>相反，停止这么做，退后一步，并使用浏览器中的开发工具检查该元素，并查看整个级联。确定哪些规则应用了你不想要的样式。并修改现有的规则，这样就不会有意想不到的后果。<br>在Firefox浏览器中，你可以通过右键单击一个页面中的元素，选择<code>检查元素</code>来调试级联。<br><img src="/img/image00.png" alt="检查元素"><br>看着这层层的级联。你可以看到所有的规则按照它们被应用的顺序应用到一个元素上。顶部的条目是具有更高的优先级的，可以重写先前的样式。你可以看到有一些规则的属性划掉了：这意味着一个更具体的规则覆盖了这个属性。<br>你不仅可以看到规则，事实上你可以切换显示它们，或随时改变他们和观察结果。它对于修复bug非常有用！<br>所需的修复可能是一个规则的变化，或它可能是在级联中不同点的一个规则变化。修复可能需要一个新的规则。至少你会知道这是正确的调用和你的代码库所需要的东西。<br>这同样是一个很好的时机去寻找<strong>重构机会</strong>。虽然CSS并不是一种编程语言，<em>它是有源代码的</em>，你应该给它和给你的JavaScript或Python同样的考虑：它应该是干净的，可读的和需要时可被重构的。</p>
+<h2 id="别-important事情"><a href="#别-important事情" class="headerlink" title="别!important事情"></a>别!important事情</h2><p>这是隐含在以前的建议中的，但因为它是关键的，我想强调一下：<strong>在你的代码中不要使用<code>!important</code></strong>。<br><code>!important</code>是一个CSS中允许你打破级联的特性。CSS代表“层叠样式表”，这是一个暗示。<br>当你没有时间或意向修复你的级联时，<code>!important</code>经常被用来急于修复一个错误。当你引入<a href="https://hacks.mozilla.org/2016/04/you-might-not-need-a-css-framework/" target="_blank" rel="external">有着非常具体的规则的CSS框架</a>并且很难覆盖他们时也被大量使用。<br>当你添加<code>!important</code>到一个属性，浏览器会忽略其他更高的特异性（优先级）规则。当你<code>!important</code>一条规则覆盖另一条也被标记为<code>!important</code>的规则的时候，你就会知道你真的惹上麻烦了。</p>
+<p>有一个合法使用<code>!important</code>的情况——在使用开发工具调试的时候。有时候你需要找到一个属性的某个值来修复你的bug。在开发者工具中使用<code>!important</code>和随时修改CSS规则会让你发现那些值，当你忽略级联的时候。<br>一旦你知道CSS的哪部分生效，你就可以回到你的代码中，看看从级联的角度你要包括哪些CSS。</p>
+<h2 id="生活不止px和"><a href="#生活不止px和" class="headerlink" title="生活不止px和%"></a>生活不止<code>px</code>和<code>%</code></h2><p>与单位<code>px</code>（像素）和<code>%</code>（百分比）一起工作是相当直观的，所以我们将集中在不为人知或不太直观的单位上。<br><strong><code>em</code>和<code>rem</code></strong><br>最著名的相对单位是em，1em相当于该元素的字体大小。<br>让我们想象一下以下HTML：</p>
+<pre><code class="html">&lt;article&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;One Ring to bring them all and in the darkness bind the.&lt;/p&gt;
+&lt;/article&gt;
+</code></pre>
+<p>和一个样式表仅有这条规则：</p>
+<pre><code class="css">article {
+  font-size: 1.25em;
+}
+</code></pre>
+<p>默认情况下大多数浏览器应用16像素的基础字体大小到根元素上（顺便说一下，这是由用户可重写的一个很好的辅助功能）。因此，该文章元素的段落文本可能会以20像素（<code>16 * 1.25</code>）的<code>font-size</code>呈现。<br>那<code>h1</code>呢？为了更好地了解将要发生什么，让我们在样式表上添加另一条CSS规则：</p>
+<pre><code class="css">h1 {
+  font-size: 1.25em;
+}
+</code></pre>
+<p>虽然它也是<code>1.25em</code>，和<code>article</code>一样，我们必须考虑到<code>em</code>单位的继承。例如，有一个<code>h1</code>是body的直接子元素，会有一个20像素（16×1.25）的<code>font-size</code>。然而，我们的<code>h1</code>在一个有着不同于根元素的<code>font-size</code>元素内（我们的<code>article</code>元素）。在这种情况下，1.25指的是<code>我们级联的font-size</code>，因此<code>h1</code>将呈现一个25像素（16×1.25×1.25）的<code>font-size</code>。<br>通过这种方式，而不是在你的大脑中做所有的乘法链，你可以仅使用<code>检查元素</code>的<code>计算后</code>标签页，显示实际的，最终的像素值：<br><img src="/img/image01.png" alt="计算属性"><br><code>em</code>单位是真的非常通用的，并且即使是动态的它很容易改变页面上所有大小（不仅是<code>font-size</code>，连同其他属性如<code>line-height</code>，或<code>width</code>）。<br>如果你喜欢<code>em</code>的“相对于基本尺寸”的部分，但不喜欢继承部分，你可以使用<strong><code>rem</code>单位</strong>。<code>rem</code>单位就像是<strong>忽略了继承</strong>而只采纳根元素的大小。<br>所以，如果我们拿之前的CSS并把<code>h1</code>中的<code>em</code>单位换成<code>rem</code>：</p>
+<pre><code class="css">article { font-size: 1.25em; }
+h1 { font-size: 1.25rem; }
+</code></pre>
+<p>所有的h1元素会有一个20像素的计算后的<code>font-size</code>（假设<code>16px</code>为基础尺寸），无论他们是否在article标签内。<br><code>vm</code>和<code>vh</code><br><strong><code>vm</code>和<code>vh</code>是视口单位。</strong><code>1vw</code>是1%视口的宽度，而<code>1vh</code>是 1%视窗的高度。<br>它们是非常有用的，如果你需要一个需要占据整个屏幕的，并不总是与实际的body尺寸相关的UI元素（就像是典型的模态框的半透明黑暗背景）。<br><strong>其他单位</strong><br>有一些其他的单位，可能不是一般的或通用的，但你会不可避免地遇到他们。关于他们可以<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/length" target="_blank" rel="external">在MDN</a>学到更多。</p>
+<h2 id="使用flexbox"><a href="#使用flexbox" class="headerlink" title="使用flexbox"></a>使用flexbox</h2><p>关于这个我们<a href="https://hacks.mozilla.org/2016/04/you-might-not-need-a-css-framework/" target="_blank" rel="external">在以前的一篇关于CSS框架的文章中</a>已经谈论过了，但flexbox模块简化了制作布局和/或对齐的任务。如果你对flexbox感到陌生，看看<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes" target="_blank" rel="external">这个入门指南</a>。<br><em>是的，今天你可以用flexbox。</em>除非由于商业原因你真的需要支持古老的浏览器。<a href="http://caniuse.com/#search=flexbox" target="_blank" rel="external">对于flexbox浏览器目前支持94%以上</a>。所以你可以停止书写那些浮动的难以调试和维护的<code>div</code>。<br>此外，留意对即将到来的<a href="https://hacks.mozilla.org/2015/09/the-future-of-layout-with-css-grid-layouts/" target="_blank" rel="external">网格模块</a>，这将使布局变成轻而易举的事情。</p>
+<h2 id="当使用CSS处理器…"><a href="#当使用CSS处理器…" class="headerlink" title="当使用CSS处理器…"></a>当使用CSS处理器…</h2><p>CSS编译器像Sass或Less在前端开发的世界很受欢迎。他们是强大的工具，当好好的利用可以让我们更有效地书写CSS。<br><strong>不要滥用选择器嵌套</strong><br>这些处理器或“编译器”中有一个共同特征是选择器嵌套。所以，例如，这个Less代码：</p>
+<pre><code class="less">a {
+  text-decoration: none;
+  color: blue;
+
+  &amp;.important {
+    font-weight: bold;
+  }
+}
+</code></pre>
+<p>会转换成如下的CSS规则：</p>
+<pre><code class="css">a {
+  text-decoration: none;
+  color: blue;
+}
+
+a.important {
+  font-weight: bold;
+}
+</code></pre>
+<p>此功能允许我们写更少的代码和组织影响元素——通常在DOM树中是一起的——的规则，那些元素。这方便调试。<br>然而，滥用这个功能也是常见的，最终在CSS选择器中复制整个DOM。所以，如果我们有以下HTML：</p>
+<pre><code class="html">&lt;article class=&quot;post&quot;&gt;
+  &lt;header&gt;
+    &lt;!-- … --&gt;
+    &lt;p&gt;Tags: &lt;a href=&quot;...&quot; class=&quot;tag&quot;&gt;irrelevant&lt;/a&gt;&lt;/p&gt;
+  &lt;/header&gt;
+  &lt;!-- … --&gt;
+&lt;/article&gt;
+</code></pre>
+<p>我们可以在CSS样式表中找到这个：</p>
+<pre><code class="less">article.post {
+  // ... other styling here
+  header {
+    // ...
+    p {
+      // ...
+      a.tag {
+        background: #ff0;
+      }
+    }
+  }
+}
+</code></pre>
+<p>主要的缺点是，这些CSS规则有<strong>非常具体的选择器</strong>。我们已经看到，这是我们应该避免的。我在<a href="http://belenalbeza.com/the-dangers-of-nesting-abuse-in-css-compilers/" target="_blank" rel="external">另一篇文章</a>中谈到过度嵌套也有其他的缺点。<br>总之：<strong>不要让嵌套生成你不会自己输入的CSS规则</strong>。<br><strong>包括与扩展</strong><br>CSS处理器的另一个有用的功能是<strong>mixins(混合)</strong>，这是CSS的可重复使用的块。例如，假设我们要设计按钮，其中大多数有一些基本的CSS属性。我们可以在Less中创建一个像这样的混合：</p>
+<pre><code class="less">.button-base() {
+  padding: 1em;
+  border: 0;
+}
+</code></pre>
+<p>然后创建一个这样的规则：</p>
+<pre><code class="less">.button-primary {
+  .button-base();
+  background: blue;
+}
+</code></pre>
+<p>这会产生以下的CSS：</p>
+<pre><code class="css">.button-primary {
+  padding: 1em;
+  border: 0;
+  background: blue;
+}
+</code></pre>
+<p>如你所见，重构公共代码非常方便！<br>除了“包括”一个混合，同样可以选择“<strong>扩展</strong>”或“继承”它（工具与工具间确切的术语是不同的）。它所做的事情是合并多个相同规则的选择器。<br>让我们看看一个例子使用先前的<code>.button-base</code>混合：</p>
+<pre><code class="less">.button-primary {
+  &amp;:extend(.button-base)
+  background: blue;
+}
+
+.button-danger {
+  &amp;:extend(.button-base)
+  background: red;
+}
+</code></pre>
+<p>这将翻译为：</p>
+<pre><code class="css">.button-primary, .button-danger {
+  padding: 1em;
+  border: 0;
+}
+
+.button-primary { background: blue; }
+.button-danger { background: red; }
+</code></pre>
+<p>有些在线文章告诉我们只使用“包括”，而有些告诉我们只使用“扩展”。事实是，他们产生<em>不同</em>的CSS，他们本质上是没有错误的，并根据你的实际情况，使用一个或另一个会更好。<br>如何选择它们？“原生写法我会这样写吗？“经验法则再次适用。</p>
+<hr>
+<p>我希望这能帮助你思考你的CSS代码和写出更好的规则。记得我们先前所说的：CSS<em>是</em>代码，因此，和你的其他的代码基础值得相同级别的注意和关心。如果你给它一些爱，你会得到回报。<br>关于<a href="http://www.belenalbeza.com/" target="_blank" rel="external">Belén Albeza</a><br>Belén作为工程师和游戏开发商在Mozilla开发者关系工作。她关心Web标准，高质量的代码，可访问性和游戏开发。<br><a href="http://www.belenalbeza.com/" target="_blank" rel="external">www.belenalbeza.com</a><br><a href="http://twitter.com/ladybenko" target="_blank" rel="external">@ladybenko</a><br>查看更多<a href="https://hacks.mozilla.org/author/balbezamozilla-com/" target="_blank" rel="external">Belén Albeza的文章</a>…</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/05/25/arrow-this/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[译]箭头函数的this arrow this</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a>
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a>
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'wangmx'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wangmx
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: false,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
+<script src="/js/main.js"></script>
+<script>
+$(function () {
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;')
+  prettyPrint()
+})
+</script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>[译]箭头函数的this arrow this | 拾指相扣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本文根据@Patreon上的《Arrow This》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：https://blog.getify.com/arrow-this/
+
+ES6中值得称赞的特性之一就是提供函数表达式缩写定义的箭头函数语法（又名匿名函数）。你很难发现关于ES6（或者甚至甚少与其相关的）的一篇文章、会议演讲或者书都没有首要介绍=&amp;gt;是新的funct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[译]箭头函数的this arrow this">
+<meta property="og:url" content="http://wangmx.github.io/2016/05/25/arrow-this/index.html">
+<meta property="og:site_name" content="拾指相扣">
+<meta property="og:description" content="本文根据@Patreon上的《Arrow This》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：https://blog.getify.com/arrow-this/
+
+ES6中值得称赞的特性之一就是提供函数表达式缩写定义的箭头函数语法（又名匿名函数）。你很难发现关于ES6（或者甚至甚少与其相关的）的一篇文章、会议演讲或者书都没有首要介绍=&amp;gt;是新的funct">
+<meta property="og:updated_time" content="2016-05-29T11:21:47.546Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[译]箭头函数的this arrow this">
+<meta name="twitter:description" content="本文根据@Patreon上的《Arrow This》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：https://blog.getify.com/arrow-this/
+
+ES6中值得称赞的特性之一就是提供函数表达式缩写定义的箭头函数语法（又名匿名函数）。你很难发现关于ES6（或者甚至甚少与其相关的）的一篇文章、会议演讲或者书都没有首要介绍=&amp;gt;是新的funct">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/github.min.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">wangmx</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/wangmx" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/wangmingxuan1" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/wangmx" title="zhihu">zhihu</a>
+					        
+								<a class="segmentfault" target="_blank" href="https://segmentfault.com/u/wangmx" title="segmentfault">segmentfault</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/arrow-function/" style="font-size: 10px;">arrow function</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/hello-world/" style="font-size: 10px;">hello_world</a> <a href="/tags/techniques/" style="font-size: 10px;">techniques</a> <a href="/tags/this/" style="font-size: 10px;">this</a> <a href="/tags/箭头函数/" style="font-size: 10px;">箭头函数</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+				
+				<section class="switch-part switch-part3">
+				
+					<div id="js-aboutme">人生若只如初见，何事秋风悲画扇。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">wangmx</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">wangmx</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/wangmx" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/wangmingxuan1" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/wangmx" title="zhihu">zhihu</a>
+			        
+						<a class="segmentfault" target="_blank" href="https://segmentfault.com/u/wangmx" title="segmentfault">segmentfault</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-arrow-this" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/05/25/arrow-this/" class="article-date">
+  	<time datetime="2016-05-24T16:14:24.000Z" itemprop="datePublished">2016-05-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [译]箭头函数的this arrow this
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/arrow-function/">arrow function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/this/">this</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/箭头函数/">箭头函数</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/翻译/">翻译</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本文根据<a href="http://twitter.com/Patreon" target="_blank" rel="external">@Patreon</a>上的《<a href="https://blog.getify.com/arrow-this/" title="Arrow This" target="_blank" rel="external">Arrow This</a>》所译，如果译得不好或有不对之处还请多多指点。如需转载此译文，需注明英文出处：<a href="https://blog.getify.com/arrow-this/" title="Arrow This" target="_blank" rel="external">https://blog.getify.com/arrow-this/</a></p>
+</blockquote>
+<p>ES6中值得称赞的特性之一就是提供函数表达式缩写定义的箭头函数语法（又名匿名函数）。你很难发现关于ES6（或者甚至甚少与其相关的）的一篇文章、会议演讲或者书都没有首要介绍<code>=&gt;</code>是新的<code>function</code>。</p>
+<p>箭头函数语法已经贯穿整个标准和规范文档，就好像它一直在那里，我们只是正好发现它。<br><a id="more"></a><br>那些追随我的人知道我不是<code>=&gt;</code>语法的爱好者，因为有<a href="https://twitter.com/search?q=arrow%20from%3Agetify&amp;src=typd" target="_blank" rel="external">许多原因</a>。但是别担心，这篇文章<strong>不是关于为什么</strong>我不喜欢它。如果你对这个讨论感兴趣，可以参考我的书<a href="https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20&amp;%20beyond/README.md#you-dont-know-js-es6--beyond" target="_blank" rel="external">YDKJS:ES6 &amp; Beyond</a>的第二章<a href="https://github.com/getify/You-Dont-Know-JS/blob/master/es6%20&amp;%20beyond/ch2.md#arrow-functions" target="_blank" rel="external">Arrow Functions</a>。</p>
+<p>围绕箭头函数和<code>this</code>, <code>arguments</code>等究竟做了什么，本篇文章将澄清一些疑惑。事实上，过去没有准确地解释这个话题我感觉到是一种罪过，这里我要清除记录。例如，一段时间后<a href="https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&amp;%20object%20prototypes/ch2.md#lexical-this" target="_blank" rel="external">我在YDKJS第一次解释了它</a>。</p>
+<h2 id="词法-是还不是？"><a href="#词法-是还不是？" class="headerlink" title="词法 是还不是？"></a>词法 是还不是？</h2><p>我和其他的很多人怎么描述箭头函数的<code>this</code>的行为：<strong>词法</strong><code>this</code>。</p>
+<p>我们究竟指的是什么？</p>
+<pre><code class="js">function foo() {
+   setTimeout( () =&gt; {
+      console.log(&quot;id:&quot;, this.id);
+   },100);
+}
+
+foo.call( { id: 42 } );
+// id: 42
+</code></pre>
+<p>这里的<code>=&gt;</code>箭头函数<em>似乎</em>绑定了它的<code>this</code>到父函数<code>foo()</code>的<code>this</code>上。</p>
+<p>如果那个内部函数是一个普通的<code>function</code>（函数声明或者函数表达式）,它的<code>this</code>本来是由<code>setTimeout(...)</code>选择调用函数时决定。如果你对决定<code>this</code>绑定的规则比较迷惑，看一下我的书<a href="https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&amp;%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes" target="_blank" rel="external">YDKJS: this &amp; Object Prototypes</a>的第二章<a href="https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&amp;%20object%20prototypes/ch2.md#determining-this" target="_blank" rel="external">Determining this</a>。</p>
+<h2 id="词法变量-this"><a href="#词法变量-this" class="headerlink" title="词法变量 this"></a>词法变量 <code>this</code></h2><p>一个说明可看见的<code>this</code>行为的通用方法是：</p>
+<pre><code class="js">function foo() {
+   var self = this;
+   setTimeout(function() {
+      console.log(&quot;id:&quot;, self.id);
+   },100);
+}
+
+foo.call( { id: 42 } );
+// id: 42
+</code></pre>
+<p><strong>边注:</strong>变量名<code>self</code>是一个绝对可怕的，有误导的名字。它意味着<code>this</code>是函数<em>本身</em>的引用。但它从来没有。<code>var that = this</code>语义上同样无益，尤其当有多个作用域生效的时候（<code>that1</code>,<code>that2</code>,…）。如果你想要一个恰当的名字，使用<code>var context = this</code>，因为那就是<code>this</code>真正的含义：一个动态的<em>上下文</em></p>
+<p>在上面这个片段中，你可以看到我们甚至没有在内部函数使用<code>this</code>。相反，我们回退到一个更可预见性的机制：<em>词法变量</em>。我们在外部函数声明一个变量<code>self</code>，然后简单的在内部函数引用它。</p>
+<p>这种完全消除了<code>this</code>绑定规则（对于内部函数，也是）。取而代之的是仅仅依赖语法作用域规则，实际上是闭包。</p>
+<p>最终的结果似乎和<code>=&gt;</code>箭头函数一样，换句话说，这里的（不严谨的）含义是<code>=&gt;</code>箭头函数有一个了类似语法变量/闭包机制的方式的“语法<code>this</code>”行为。</p>
+<p>但是……<strong>那是不精确的</strong><br>嗯哦。我的错。</p>
+<h2 id="箭头绑定this"><a href="#箭头绑定this" class="headerlink" title="箭头绑定this"></a>箭头绑定<code>this</code></h2><p>另一个说明可看见的<code>=&gt;</code>箭头函数<code>this</code>的行为的方式是认为内部函数被强制绑定：</p>
+<pre><code class="js">function foo() {
+   setTimeout(function() {
+      console.log(&quot;id:&quot;, this.id);
+   }.bind(this),100);
+}
+
+foo.call( { id: 42 } );
+// id: 42
+</code></pre>
+<p>正如你看到的<code>.bind(this)</code>，这里的内部函数被强制绑定到外部函数的<code>this</code>，也意味着不管<code>setTimeout(...)</code>如何调用函数，调用函数始终使用<code>foo()</code>函数使用的<code>this</code>。</p>
+<p>是的，这个版本有着和先前两个代码片段同样可观察到的行为。因此，它更精确吗？很多人认为那就是<code>=&gt;</code>箭头函数<em>实际上</em>怎样运作的。<br>额……<strong>不。</strong><br>哎呦。</p>
+<h2 id="先前语法"><a href="#先前语法" class="headerlink" title="先前语法"></a>先前语法</h2><p>我感到更加尴尬对于过去我的含糊不清的解释和对其他的解释的容忍，因为一段时间后TC39的正式员工Dave Herman<a href="http://twitter.com/littlecalculist" target="_blank" rel="external">@littlecalculist</a>向我仔细准确地解释了这个问题，然后我还是没有完全吸收他的解释的含义的内在，我感到有罪。<br>Dave告诉我，本质上,“‘词法<code>this</code>’短语是令人不安的，因为<code>this</code>一直是词法”<br>真的吗？唔……<br>他继续说道，“<code>=&gt;</code>改变的不是把<code>this</code>词法化，而是一点也不绑定它里面的<code>this</code>。”<br>我没有完全理解他说的话。但是我现在知道了。<br>普通函数声明它们自己的<code>this</code>,使用前述的规则中的一个。<code>=&gt;</code>箭头函数就没有<code>this</code>。<br><strong>等等……</strong>这怎么可能？我很确信在一个<code>=&gt;</code>箭头函数内使用<code>this</code>。你当然可以，但是怎么回事？既然<code>=&gt;</code>箭头函数没有它自己的<code>this</code>，当你使用<code>this</code>时，普通词法作用域规则是生效的，引用被解析为包含最近的外部作用域定义的<code>this</code>。<br>考虑下面这个代码：</p>
+<pre><code class="js">function foo() {
+   return () =&gt; {
+      return () =&gt; {
+         return () =&gt; {
+            console.log(&quot;id:&quot;, this.id);
+         };
+      };
+   };
+}
+
+foo.call( { id: 42 } )()()();
+// id: 42
+</code></pre>
+<p>在这个片段中，你认为有多少个<code>this</code>绑定？大多数可能认为是4个，每个函数一个。<br>准确无误的来说，只有<strong>一个</strong>，是在<code>foo()</code>函数中。<br>相继嵌套的<code>=&gt;</code>箭头函数没有声明自己的<code>this</code>，因此<code>this.id</code>简单的沿着作用域链解析直到找到<code>foo()</code>，第一个肯定绑定<code>this</code>的函数。</p>
+<p>另一个普通的词法变量的处理方式和这个完全相同。</p>
+<p>换句话说，就像Dave说的，<strong><code>this</code>本来是词法，而且始终是词法。</strong><code>=&gt;</code>不绑定<code>this</code>变量，因此作用域继续向上查找如同它一直那样做一样。</p>
+<h2 id="不仅仅是this"><a href="#不仅仅是this" class="headerlink" title="不仅仅是this"></a>不仅仅是<code>this</code></h2><p>如果你含糊不清地解释<code>=&gt;</code>对<code>this</code>的行为，你最终认为“箭头函数仅仅是<code>function</code>的语法糖……”,这是非常危险的，它们显然不是，也不是<code>var self = this</code>或者<code>.bind(this)</code>的语法糖。</p>
+<p>那些不准确的解释是<em>为错误的原因得到正确的答案</em>的典型例子。就像回到高中的代数课，当你在考试中得到正确答案的时候但是你的老师指出你使用了不正确的方式得到答案。<strong>你怎样得到答案才重要!</strong></p>
+<p>此外，准确的解释——<code>=&gt;</code>不绑定它自己的<code>this</code>，允许词法作用域解析——同样解释了另外一个<code>=&gt;</code>箭头函数重要的事实：他们不改变<code>this</code>在内部函数是如何生效的。</p>
+<p>事实上，<code>=&gt;</code>箭头函数不绑定<code>this</code>、<code>arguments</code>、<code>super</code>(ES6)或者<code>new.target</code>(ES6)。</p>
+<p>那就对了，上面所有的四种情况下（未来可能更多！），<code>=&gt;</code>箭头函数不绑定那些变量，因此任何对它们的引用都会沿着作用域链解析到它们外部的作用域。<br>考虑下面这个代码：</p>
+<pre><code class="js">function foo() {
+   setTimeout( () =&gt; {
+      console.log(&quot;args:&quot;, arguments);
+   },100);
+}
+
+foo( 2, 4, 6, 8 );
+// args: [2, 4, 6, 8]
+</code></pre>
+<p>你看见了吗？<br>在这个片段中，<code>arguments</code>没有被<code>=&gt;</code>限定，因此它被解析到<code>foo()</code>函数的<code>arguments</code>。<code>super</code>和<code>new.target</code>也是同样的结果。</p>
+<h2 id="为什么this重要？"><a href="#为什么this重要？" class="headerlink" title="为什么this重要？"></a>为什么<code>this</code>重要？</h2><p><strong>更新：</strong>在评论和社交媒体中，很多人质疑既然<code>this</code>不管是理论或是实践上表现一样，为什么它真的重要？</p>
+<p>你知道<code>=&gt;</code>箭头函数不能让它们的<code>this</code>绑定被<code>bind(...)</code>强制限定吗？</p>
+<p>考虑下面这个代码：</p>
+<pre><code class="js">function foo() {
+   return () =&gt; {
+      console.log(&quot;id:&quot;,this.id);
+   };
+}
+
+var arrowfn = foo.call( { id: 42 } );
+
+setTimeout( arrowfn.bind( { id: 100 } ), 100);
+// id: 42
+</code></pre>
+<p>所以为什么<code>.bind({...})</code>没有生效得到<code>id: 100</code>的输出？<br>如果你对<code>=&gt;</code>箭头函数的<code>this</code>有不准确的理解，你不得不假设可以这样解释：“<code>this</code>是不可改变的。”，<strong>这是错误的。</strong></p>
+<p>简单正确的答案是既然<code>=&gt;</code>没有<code>this</code>，当然<code>.bind(obj)</code>没有什么可以操作！类似地，<code>=&gt;</code>不能被<code>new</code>调用。既然没有<code>this</code>，<code>new</code>没有东西可以绑定。</p>
+<p>理解了<code>=&gt;</code>实际上怎么样处理<code>this</code>是非常重要的。因为这是唯一的方式去准确解释<code>=&gt;</code>箭头函数其他可观察到的行为。当你觉得奇怪时，待在黑暗里，然后摸索奇怪的解释——这是不成熟的JS编码方式。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不要满足于舒适但不准确的答案，不要满足于通过错误的方式得到正确的答案。<br>它影响事情是如何工作的。它影响你使用的构思模型，因为你会用它分析、描述和调试其他的行为。如果你在一开始就偏离了轨道，你未来只能还在偏离的轨道上。<br>希望我那时更仔细地倾听了Dave。希望没有不准确地解释了<code>=&gt;</code>对<code>this</code>的行为。我认真对待关于JS我所想的，所写的和教授的都是正确的，未来我会更加仔细。</p>
+<p>在<a href="http://twitter.com/share?_=4552000896&amp;original_referer=https%3A%2F%2Fblog.getify.com%2Farrow-this%2F&amp;related=AustinJS%3AAustin.JavaScript%20monthly%20meetup%20group&amp;text=Arrow+This&amp;url=https%3A%2F%2Fblog.getify.com%2Farrow-this%2F" target="_blank" rel="external">Tweet</a>上分享这篇文章</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/29/css-coding-techniques/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          [译]css编码技巧 css coding techniques
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/18/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a>
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a>
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'wangmx'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 wangmx
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+
+<script>
+	var yiliaConfig = {
+		fancybox: false,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: true
+	}
+</script>
+<script src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/prettify/r298/prettify.min.js"></script>
+<script src="/js/main.js"></script>
+<script>
+$(function () {
+  $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;')
+  prettyPrint()
+})
+</script>
+
+
+
+
+
+  </div>
+</body>
+</html>
